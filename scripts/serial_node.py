@@ -25,7 +25,7 @@ if __name__ == '__main__':
     pub = rospy.Publisher('received_from_device', UInt8, queue_size=10)
 
     while not rospy.is_shutdown():
-        received_message_str_hex = ser.readline().hex()[:2] #only taking the first 2 bits
+        received_message_str_hex = ser.readline().hex()[:2] #only taking the first byte
         received_message_int = int(received_message_str_hex,16)
         pub.publish(received_message_int)
         rospy.loginfo("received from device:" + hex(received_message_int))
